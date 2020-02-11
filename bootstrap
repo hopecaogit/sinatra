@@ -1,0 +1,15 @@
+#!/bin/bash -xe
+exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
+apt-get update
+apt-get install ruby-bundler -y
+apt-get install git -y
+iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 9292
+
+git clone https://github.com/rea-cruitment/simple-sinatra-app.git
+cd simple-sinatra-app
+bundle install --path vendor/bundle
+bundle exec rackup --host 0.0.0.0 -p 9292 &
+
+ufw enable
+ufw allow 9292
+ufw allow 22
