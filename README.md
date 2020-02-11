@@ -1,7 +1,8 @@
 # Deploy Trent's Simple Sinatra App to AWS
 
 This project is to deploy Trent's Simple Sinatra App using AWS cli.
-It uses a single EC2 to host this application which is available on port 80
+It uses a single EC2 to host this application which is available on port 80.
+The deployment uses Ubuntu 18.04.
 This deployment is tested in Mac OS and Ubuntu.
 
 ## Prerequisite
