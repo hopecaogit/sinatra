@@ -10,8 +10,7 @@ This deployment is tested in Mac OS and Ubuntu.
 - An AWS user with EC2 Full access permission
 - Install AWS cli
 - Configure AWS cli. This deploy using cli default profile. To use a different
-  profile, please add --profile to cli in shell scripts, and to replace
-  the AMI ID in deploy.sh with an Ubuntu AMI ID from the region you intend to deploy.
+  profile, please add --profile to cli in shell scripts.
 
 ## Files  
 All these shell scripts take one parameter, resource filename.

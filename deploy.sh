@@ -12,6 +12,10 @@ keypair_name=SinatraKeyPair
 # get public IP address for SSH
 myip=`curl -s https://ipinfo.io/ip`
 
+#get ubuntu AMI ID depending on deploy_region
+image_id=`aws ec2 describe-images --filters "Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-20200112" \
+    --region ${deploy_region} | jq -r '.Images[0].ImageId'`
+
 #file to contain resouce ids deployed for future cleanup
 touch ${resr_file}
 
@@ -35,7 +39,7 @@ echo "keypair_name="${keypair_name} >> ${resr_file}
 echo "keypair_file="${keypair_file} >> ${resr_file}
 
 #create EC2, deploy app
-inst_id=`aws ec2 run-instances --image-id ami-02a599eb01e3b3c5b --count 1 \
+inst_id=`aws ec2 run-instances --image-id ${image_id} --count 1 \
 --instance-type t2.micro  --key-name ${keypair_name} \
  --security-group-ids ${sg_group_id} \
 --user-data file://bootstrap --region ${deploy_region} | jq -r '.Instances[0].InstanceId'`
