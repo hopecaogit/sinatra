@@ -5,6 +5,8 @@ apt-get install ruby-bundler -y
 apt-get install git -y
 iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 9292
 
+mkdir -p /tmp/sinatra
+cd /tmp/sinatra
 git clone https://github.com/rea-cruitment/simple-sinatra-app.git
 cd simple-sinatra-app
 bundle install --path vendor/bundle
