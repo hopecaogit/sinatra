@@ -45,7 +45,9 @@ please change deploy_region variable in all three shell scripts.
   2. Run check_ec2_public_dns.sh [resourcefilename]
      When EC2 status is running, wait for approximately a minute to let bootstrap
      to complete. Get the public DNS name from the output. Two options to check
+     
      curl [publicdnsname]
+     
      Go to a brower, http://[publicdnsname]
 
      Both shows "Hello World!"
